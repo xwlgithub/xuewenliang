@@ -1,5 +1,6 @@
 import entity.User;
 import org.junit.Test;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -11,10 +12,18 @@ import java.util.stream.Collectors;
  */
 public class Demo {
     List<User> userList = Arrays.asList(
-            new User("1", "张三", 250965.55),
+            new User("1", "张三", 950965.55),
             new User("2", "李四", 123111.48),
             new User("3", "王五", 789456.89)
     );
+
+    @Test
+    public void De() {
+        List<User> collect = userList.stream().filter(user -> user.getMoney() > 123111.48)
+                .sorted((u1, u2) -> u1.getMoney().compareTo(u2.getMoney()))
+                .collect(Collectors.toList());
+        collect.forEach(System.out::print);
+    }
 
     @Test
     public void TestReduce() {
@@ -28,10 +37,11 @@ public class Demo {
         User user = userList.stream().collect(Collectors.maxBy((S1, S2) -> S1.getMoney().compareTo(S2.getMoney()))).get();
         System.out.println(user.toString());
     }
+
     @Test
     @SuppressWarnings("all")
-    public void TestStream(){
-        Integer[] integers=new Integer[]{1,2,3,4,5};
+    public void TestStream() {
+        Integer[] integers = new Integer[]{1, 2, 3, 4, 5};
         List<Integer> collect = Arrays.stream(integers).map(s -> s * s).collect(Collectors.toList());
         collect.forEach(System.out::println);
         Map<String, User> collect1 = userList.stream().filter(user -> user.getMoney() < 789456.89)
@@ -39,14 +49,15 @@ public class Demo {
                 .collect(Collectors.toMap(s -> s.getName(), s -> s));
 
     }
+
     @Test
-    public void TT(){
+    public void TT() {
         Map<String, String> collect = userList.stream().filter(user ->
                 user.getMoney() >= 250965.55 ||
                         user.getName().equals("王五")
         ).collect(Collectors.toMap(User::getId, User::getName));
-        collect.entrySet().stream().forEach(user->{
-            System.out.println(user.getKey()+"\t\t\t"+user.getValue());
+        collect.entrySet().stream().forEach(user -> {
+            System.out.println(user.getKey() + "\t\t\t" + user.getValue());
         });
     }
 

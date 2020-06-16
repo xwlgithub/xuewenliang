@@ -14,8 +14,6 @@
     <modules>
         <module>lambda-test</module>
         <module>log4-jtest</module>
-        <module>logFour</module>
-        <module>xwl-t</module>
     </modules>
     <packaging>pom</packaging>
 </project>

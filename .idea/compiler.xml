@@ -9,12 +9,14 @@
         <module name="lambda-test" />
         <module name="log4-jtest" />
         <module name="logback" />
+        <module name="rabbitmq-study" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="log-back" target="1.8" />
       <module name="logback-test" target="1.8" />
       <module name="logFour" target="1.8" />
+      <module name="rabbit-study" target="1.8" />
       <module name="xwl-t" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -26,6 +28,8 @@
       <module name="logFour" options="-parameters" />
       <module name="logback" options="-parameters" />
       <module name="logback-test" options="-parameters" />
+      <module name="rabbit-study" options="-parameters" />
+      <module name="rabbitmq-study" options="-parameters" />
       <module name="xwl-t" options="-parameters" />
     </option>
   </component>

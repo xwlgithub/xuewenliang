@@ -1,0 +1,18 @@
+spring:
+  rabbitmq:
+    host: localhost #地址
+    port: 5672 #端口
+    username: xwl #用户名
+    password: 258000 #密码
+    virtual-host: /xwl #虚拟机地址/权限
+    template:
+      exchange: xwl_exchange #交换机
+      retry:
+        initial-interval: 10000ms #如果没有接收到消费回执,即每隔10秒访问一次
+        enabled: true #开启重试机制
+        max-interval: 30000ms #最大叠加制不超过30秒
+        max-attempts: 2 #每次访问一次间隔后都以2倍叠加再次访问
+eureka:
+  client:
+    register-with-eureka: false #单体应用测试-不注册eureka
+    fetch-registry: false #不发送心跳到注册中心
