@@ -1,0 +1,18 @@
+server:
+  port: 8787
+  #加载日志配置文件
+logging:
+  config: classpath:log4j2-spring.xml
+#spring:
+#  autoconfigure:
+#    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+#  data:
+#    mongodb:
+#      uri: mongodb://admin:TFIot20190401@122.227.10.210:20004/test
+#      username: admin
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: tfenergy
+#排除mongodb自动加载
