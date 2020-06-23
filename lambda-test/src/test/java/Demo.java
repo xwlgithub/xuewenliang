@@ -1,3 +1,4 @@
+import entity.Mach;
 import entity.User;
 import org.junit.Test;
 
@@ -12,10 +13,21 @@ import java.util.stream.Collectors;
  */
 public class Demo {
     List<User> userList = Arrays.asList(
-            new User("1", "张三", 950965.55),
-            new User("2", "李四", 123111.48),
-            new User("3", "王五", 789456.89)
+            new User("1", "张三", 950965.55,"55"),
+            new User("2", "李四", 123111.48,"66"),
+            new User("3", "王五", 789456.89,"77")
     );
+
+    @Test
+    public void ddd(){
+        List<Mach> collect = userList.stream().map(user -> {
+            Mach mach = new Mach();
+            mach.setId(user.getId());
+            mach.setName(user.getName());
+            return mach;
+        }).collect(Collectors.toList());
+        List<Mach> zhang = collect.stream().filter(mach -> mach.getId().equals("zhang")).distinct().collect(Collectors.toList());
+    }
 
     @Test
     public void De() {

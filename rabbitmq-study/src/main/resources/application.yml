@@ -6,13 +6,37 @@ spring:
     password: 258000 #密码
     virtual-host: /xwl #虚拟机地址/权限
     template:
-      exchange: xwl_exchange #交换机
+      #exchange: xwl_exchange #交换机
       retry:
         initial-interval: 10000ms #如果没有接收到消费回执,即每隔10秒访问一次
         enabled: true #开启重试机制
         max-interval: 30000ms #最大叠加制不超过30秒
         max-attempts: 2 #每次访问一次间隔后都以2倍叠加再次访问
+    listener:
+      simple:
+        default-requeue-rejected: false #监听器抛出异常而拒绝的消息是否被重新放回队列。默认值为true
+        #none无应答确认发送
+        #manual意味着监听者必须通过调用Channel.basicAck()来告知所有的消息。
+        #auto意味着容器会自动应答，除非MessageListener抛出异常，这是默认配置方式。
+        acknowledge-mode: manual
+        prefetch: 1
+        concurrency: 1 #消费者监听 分发1个队列执行
+      direct:
+        acknowledge-mode: manual
+      type: simple
+    publisher-confirms: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/mythread?characterEncoding=utf-8
 eureka:
   client:
     register-with-eureka: false #单体应用测试-不注册eureka
     fetch-registry: false #不发送心跳到注册中心
+#配置mybatis-plus打印sql语句于控制台
+mybatis-plus:
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true
