@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class SeckKillServiceImpl implements ISeckKillService {
     //交换机名称
     public static final String ITEM_TOPIC_EXCHANGE = "xwl_exchange";
+    //下单队列路由key
     public static final String ITEM_ROUKEY = "item.sendKill";
     //引入消息发送API
     private RabbitTemplate rabbitTemplate;

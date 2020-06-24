@@ -1,21 +1,17 @@
 package com.itxwl.rabbitmqstudy.seckill.config;
 
 import com.itxwl.rabbitmqstudy.seckill.eneity.OrderInfo;
-import com.itxwl.rabbitmqstudy.seckill.eneity.StokOrder;
 import com.itxwl.rabbitmqstudy.seckill.mapper.OrderInfoMapper;
 import com.itxwl.rabbitmqstudy.seckill.mapper.StokOrderMapper;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.TimeoutUtils;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Map;

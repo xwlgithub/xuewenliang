@@ -20,7 +20,7 @@ spring:
         #auto意味着容器会自动应答，除非MessageListener抛出异常，这是默认配置方式。
         acknowledge-mode: manual
         prefetch: 1
-        concurrency: 1 #消费者监听 分发1个队列执行
+        concurrency: 5 #消费者监听 分发5个队列执行
       direct:
         acknowledge-mode: manual
       type: simple
