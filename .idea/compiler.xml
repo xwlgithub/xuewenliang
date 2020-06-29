@@ -10,6 +10,7 @@
         <module name="log4-jtest" />
         <module name="logback" />
         <module name="rabbitmq-study" />
+        <module name="thread-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -30,6 +31,7 @@
       <module name="logback-test" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />
+      <module name="thread-test" options="-parameters" />
       <module name="xwl-t" options="-parameters" />
     </option>
   </component>
