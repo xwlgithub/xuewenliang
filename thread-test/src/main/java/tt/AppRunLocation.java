@@ -16,7 +16,15 @@ public class AppRunLocation {
     public static void main(String[] args) {
         SpringApplication.run(AppRunLocation.class,args);
     }
-    @Bean
+
+    /**         corePoolSize 核心线程池大小
+     *          maximumPoolSize 大小，
+     *          BlockingQueue 阻塞队列，多余的任务会放在这，
+     *          ThreadFactory 生产线程池的线程，
+     *          RejectedExecutionHandler 拒绝策略
+     * @return
+     */
+    @Bean("execu")
     public ExecutorService executorService(){
         return   new ThreadPoolExecutor(5,15,60,
                 TimeUnit.SECONDS,

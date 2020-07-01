@@ -17,9 +17,9 @@ public class MyThreadWithCallable  implements Callable<String>{
      * @throws Exception
      */
         @Override
-        public  String call() throws Exception {
-            synchronized (this){
-               return   String.valueOf((int)(Math.random()*10+1));
+        public   String call() throws Exception {
+            synchronized (this) {
+                return String.valueOf((int) (Math.random() * 10 + 1));
             }
         }
 }
