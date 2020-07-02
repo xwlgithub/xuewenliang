@@ -1,30 +1,38 @@
 package tt.runable;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @Auther: 薛
  * @Date: 2020/6/29 15:41
  * @Description:
  */
 public class MyRunable implements Runnable {
-    private static int counts=100;
+    ReentrantLock lk = new ReentrantLock();
+    int counts = 15;
+
     @Override
-    public  void run() {
+    public void run() {
         while (true) {
-            if (counts <=0) {
-                break;
+            lk.lock();
+            try {
+                if (counts <= 0) {
+                    break;
+                }
+                System.out.println(Thread.currentThread().getName() + "\t" + counts);
+                counts--;
+                Thread.sleep(500);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lk.unlock();
             }
-            System.out.println("抢到了"+counts);
-            counts--;
         }
     }
-
     public static void main(String[] args) {
         MyRunable myRunable = new MyRunable();
-        new Thread(myRunable).start();
-        new Thread(myRunable).start();
-        new Thread(myRunable).start();
-        new Thread(myRunable).start();
-        new Thread(myRunable).start();
+        new Thread(myRunable, "张三").start();
+        new Thread(myRunable, "李四").start();
     }
 }
 
