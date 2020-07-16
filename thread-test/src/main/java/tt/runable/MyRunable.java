@@ -30,9 +30,12 @@ public class MyRunable implements Runnable {
         }
     }
     public static void main(String[] args) {
-        MyRunable myRunable = new MyRunable();
-        new Thread(myRunable, "张三").start();
-        new Thread(myRunable, "李四").start();
+//        MyRunable myRunable = new MyRunable();
+//        new Thread(myRunable, "张三").start();
+//        new Thread(myRunable, "李四").start();
+        String ss ="zz";
+        if (ss!=null) System.out.println("哈哈");
+        else System.out.println("zhangsan");
     }
 }
 

@@ -1,12 +1,4 @@
 package tt.demo1;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -74,6 +66,7 @@ class HAHA {
         @Override
         public void run() {
             synchronized (o) {
+                //唤醒当前线程
                 o.notify();
                 System.out.println(System.currentTimeMillis()+"当前值是5,线程等待被唤醒");
                 System.out.println("准备休眠两秒再唤醒当前线程");
