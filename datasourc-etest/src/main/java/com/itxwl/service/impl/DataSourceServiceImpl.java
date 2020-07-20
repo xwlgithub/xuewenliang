@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
-@DS("master")
 public class DataSourceServiceImpl implements IDataSourceService {
     private DataSourceMapper dataSourceMapper;
     @Override
