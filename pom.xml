@@ -16,6 +16,7 @@
         <module>log4-jtest</module>
         <module>thread-test</module>
         <module>jvm-test</module>
+        <module>datasourc-etest</module>
     </modules>
     <packaging>pom</packaging>
 </project>

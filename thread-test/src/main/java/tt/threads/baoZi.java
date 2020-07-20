@@ -72,8 +72,8 @@ class BC extends Thread{
 }
 class Demo {
     public static void main(String[] args) {
-//        baoZi bbb = new baoZi();
-//        new Pu(bbb).start();
-//        new BC(bbb).start();
+        baoZi bbb = new baoZi();
+        new Pu(bbb).start();
+        new BC(bbb).start();
     }
 }

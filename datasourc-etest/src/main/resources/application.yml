@@ -1,0 +1,61 @@
+server:
+  port: 7777
+spring:
+  #基础连接四项配置
+  datasource:
+    dynamic:
+      primary: master #默认数据源
+      datasource:
+        master:
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password: root
+          url: jdbc:mysql://localhost:3306/bladex?characterEncoding=utf-8
+        other:  #从数据源
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password: root
+          url: jdbc:mysql://192.168.0.7:3306/bladex?characterEncoding=utf-8
+    druid:
+      initial-size: 10 #初始化10个连接
+      max-active: 100  #最大连接100
+      min-idle: 10 #最小连接10
+      max-wait: 60000 #获取连接最大等待时间(单位:毫秒)
+      validation-query: select 1 from dual
+      test-on-borrow: false #获取连接时是否监测连接有效(不建议开启)
+      test-on-return: false #归还连接时是否检测连接有效(不建议开启)
+      test-while-idle: true #申请连接时检测,如果空闲时间大于time-between-eviction-runs-millis即执行检测
+      time-between-eviction-runs-millis: 300000 # 检测并销毁
+      min-evictable-idle-time-millis: 300000 #连接在池中有效时间
+      filters: stat,wall #监控统计携带日志级别
+      stat-view-servlet:
+        enabled: true #开启监控统计
+        login-username: xuewenliang
+        login-password: 123456
+        reset-enable: false #不清空统计数据
+      web-stat-filter:
+        enabled: true #开启单个监控url调用的sql列表 (默认开启)
+        url-pattern: /* #映射规则到任何URL
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*' #排除任何规则
+        session-stat-enable: true #开启session统计
+        session-stat-max-count: 100  #设置session统计最大值
+        #排除Druid连接池默认配置以及JDBC管理都是自定义形式
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure,org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    #服务名
+  application:
+    name: datasource-server
+    #IP
+eureka:
+  instance:
+    hostname: localhost
+    #本例做单独服务不被注册中心发现
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名规则支持
+    cache-enabled: false
+    #扫描mapper持久层接口
+  mapper-locations: classpath:com.xwl/**/mapper/*Mapper.xml
