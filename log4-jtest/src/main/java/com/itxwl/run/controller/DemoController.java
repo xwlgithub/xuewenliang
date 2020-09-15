@@ -27,7 +27,5 @@ public class DemoController {
         return demoService.js(data);
     }
 
-    public static void main(String[] args) {
-    }
 
 }

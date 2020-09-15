@@ -1,10 +1,13 @@
 package com.itxwl.service.impl;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.itxwl.domain.TfEmail;
 import com.itxwl.mapper.DataSourceMapper;
 import com.itxwl.service.IDataSourceService;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +21,7 @@ public class DataSourceServiceImpl implements IDataSourceService {
     private DataSourceMapper dataSourceMapper;
     @Override
     public TfEmail findSourceData(Integer id) {
+        DruidDataSource build = DruidDataSourceBuilder.create().build();
         //如果是1调用基础库-也就是本身的默认库
         if (id.equals(1)){
                 return findSourceDatas();

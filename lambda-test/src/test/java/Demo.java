@@ -2,6 +2,7 @@ import entity.Mach;
 import entity.User;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -18,6 +19,32 @@ public class Demo {
             new User("3", "王五", 789456.89, "77")
     );
 
+    public static void main(String[] args) {
+        List<User> userList = Arrays.asList(
+                new User("1", "张三", 950965.55, "55"),
+                new User("2", "李四", 123111.48, "66"),
+                new User("3", "王五", 789456.89, "77")
+        );
+        List<User> collect = userList.stream().filter(user -> {
+            user.setMoney(0.0);
+            return true;
+        }).collect(Collectors.toList());
+        System.out.println(collect.toString());
+    }
+
+//    public static void main(String[] args) {
+//        List<User> userList = Arrays.asList(
+//                new User("1", null, 950965.55, "55"),
+//                new User("2", "李四", 123111.48, "66"),
+//                new User("3", "王五", 789456.89, "77")
+//        );
+//        DoubleSummaryStatistics ds = userList.stream().mapToDouble(user -> user.getMoney()).summaryStatistics();
+//        System.out.println(ds.getAverage()+"平均");
+//        System.out.println(ds.getSum()+"总和");
+//        System.out.println(ds.getCount()+"总数");
+//        System.out.println(ds.getMax()+"最大");
+//        System.out.println(ds.getMin()+"最小");
+//    }
     @Test
     public void ddd() {
         List<Mach> collect = userList.stream().map(user -> {
@@ -70,6 +97,16 @@ public class Demo {
         collect.entrySet().stream().forEach(user -> {
             System.out.println(user.getKey() + "\t\t\t" + user.getValue());
         });
+    }
+    @Test
+    public void TTTT() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String ss="2020-09-14 13:33:33";
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        instance.add(Calendar.DAY_OF_MONTH,-1);
+        String format = simpleDateFormat.format(instance.getTime());
+        System.out.println(format);
     }
 
 }
