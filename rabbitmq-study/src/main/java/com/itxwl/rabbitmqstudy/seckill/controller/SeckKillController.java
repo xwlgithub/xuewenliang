@@ -1,5 +1,6 @@
 package com.itxwl.rabbitmqstudy.seckill.controller;
 
+import com.itxwl.rabbitmqstudy.seckill.config.RabbitMqConfig;
 import com.itxwl.rabbitmqstudy.seckill.service.ISeckKillService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

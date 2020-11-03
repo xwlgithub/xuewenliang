@@ -21,6 +21,7 @@ import java.util.Map;
 @Configuration
 @SuppressWarnings("ALL")
 public class RabbitMqConfig {
+    private static String ss="sss";
     //交换机名称
     public static  String ITEM_TOPIC_EXCHANGE="xwl_exchange";
     //队列名称
@@ -36,7 +37,7 @@ public class RabbitMqConfig {
         Map<String, Object> args = new HashMap<>();
         //声明死信交换器
         args.put("x-dead-letter-exchange", "deal_exchange");
-        //声明死信路由键
+        //声明死信路由键(绑定)
         args.put("x-dead-letter-routing-key", "DelayKey");
         //声明主队列如果发生堵塞或其它-10秒自动消费消息
         args.put("x-message-ttl",10000);

@@ -58,7 +58,7 @@ public class SendKillListener {
      * @throws IOException
      */
     @RabbitListener(queues = "xwl_queue")
-    public void sendMiss(Message message, @Headers Map<String, Object> map, Channel channel) throws InterruptedException, IOException {
+    public synchronized void sendMiss(Message message, @Headers Map<String, Object> map, Channel channel) throws InterruptedException, IOException {
         String msg = new String(message.getBody(), "UTF-8");
         Integer shopCount=0;
         //第一个请求进来获取库存-先去缓存redis找对应key值如果没有发送一个连接查询后续无需再次获取库存
@@ -69,6 +69,7 @@ public class SendKillListener {
             //自减缓存内库存量- 每次减-
              shopCount = ((Integer) re.opsForValue().get("stockCount"))-1;
         }
+        System.out.println("当前库存量"+(Integer)re.opsForValue().get("stockCount"));
         //如果库存量小于等于0即已经抢完
         if (shopCount<= 0) {
             //即放入死信队列-推送后续队列内消息即为抢单失败-

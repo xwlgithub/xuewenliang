@@ -25,11 +25,16 @@ public class Demo {
                 new User("2", "李四", 123111.48, "66"),
                 new User("3", "王五", 789456.89, "77")
         );
-        List<User> collect = userList.stream().filter(user -> {
-            user.setMoney(0.0);
-            return true;
-        }).collect(Collectors.toList());
-        System.out.println(collect.toString());
+        List<Integer> userLists = Arrays.asList(1,4,5,2);
+        List<Integer> collect = userLists.stream().sorted((s1, s2) -> s1.compareTo(s2)).collect(Collectors.toList());
+        collect.stream().forEach(System.out::println);
+        List<User> collect1 = userList.stream().sorted(((user, t1) -> user.getMoney().compareTo(t1.getMoney()))).collect(Collectors.toList());
+        collect1.stream().forEach(System.out::println);
+//        List<User> collect = userList.stream().filter(user -> {
+//            user.setMoney(0.0);
+//            return true;
+//        }).collect(Collectors.toList());
+//        System.out.println(collect.toString());
     }
 
 //    public static void main(String[] args) {

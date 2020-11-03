@@ -33,9 +33,10 @@ public class RequestController  {
         //        MessageProperties messageProperties = new MessageProperties();
 //        messageProperties.setExpiration("5000");
 //        Message message = new Message("张三".getBytes(), messageProperties);
-        for (int i = 0; i < 50
+        for (int i = 0; i < 10
                 ; i++) {
             //CorrelationData correlationData = new CorrelationData("1");
+            // 发送消息 exchange:(交换机),routingKey:(路由),object:(消息~~~)
             rabbitTemplate.convertAndSend("xwl_exchange", "item.ss", "1");
         }
         return "success";
