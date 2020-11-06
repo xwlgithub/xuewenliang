@@ -71,7 +71,7 @@ class HAHA {
                 System.out.println(System.currentTimeMillis()+"当前值是5,线程等待被唤醒");
                 System.out.println("准备休眠两秒再唤醒当前线程");
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                 }
             }
