@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="datasourc-etest" />
-        <module name="jvm-test" />
+        <module name="excel-prot" />
         <module name="lambda-test" />
         <module name="log4-jtest" />
         <module name="logback" />
@@ -16,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="jvm-test" target="1.8" />
       <module name="log-back" target="1.8" />
       <module name="logback-test" target="1.8" />
       <module name="logFour" target="1.8" />
@@ -26,6 +27,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="datasourc-etest" options="-parameters" />
+      <module name="excel-prot" options="-parameters" />
       <module name="jvm-test" options="-parameters" />
       <module name="lambda-test" options="-parameters" />
       <module name="log-back" options="-parameters" />

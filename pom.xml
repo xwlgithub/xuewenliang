@@ -15,8 +15,8 @@
         <module>lambda-test</module>
         <module>log4-jtest</module>
         <module>thread-test</module>
-        <module>jvm-test</module>
         <module>datasourc-etest</module>
+        <module>excel-prot</module>
     </modules>
     <packaging>pom</packaging>
 </project>

@@ -1,0 +1,15 @@
+server:
+  port: 5959
+
+spring:
+  application:
+    name: export-server
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: root
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#    url: jdbc:mysql://localhost:3306/myxue?characterEncoding=UTF-8

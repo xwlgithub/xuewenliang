@@ -10,6 +10,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/jvm-test/pom.xml" />
         <option value="$PROJECT_DIR$/log-back/pom.xml" />
         <option value="$PROJECT_DIR$/logFour/pom.xml" />
         <option value="$PROJECT_DIR$/logback-test/pom.xml" />
