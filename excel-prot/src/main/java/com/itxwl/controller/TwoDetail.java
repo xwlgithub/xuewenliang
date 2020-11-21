@@ -10,13 +10,13 @@ import java.util.List;
 
 /**
  * @Auther: 薛
- * @Date: 2020/11/20 14:05
+ * @Date: 2020/11/21 13:10
  * @Description:
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlanDetail {
+public class TwoDetail {
     @ExcelProperty(value = "姓名")
     private String name;
     @ExcelProperty(value = "地址")
@@ -26,10 +26,10 @@ public class PlanDetail {
     @ExcelProperty(value = "邮箱")
     private String email;
 
-    public static List<PlanDetail> getPlanDetail(){
-        List<PlanDetail> planDetails=new LinkedList<>();
+    public static List<TwoDetail> getPlanDetail(){
+        List<TwoDetail> planDetails=new LinkedList<>();
         for (int i = 0; i < 50; i++) {
-            planDetails.add(new PlanDetail("张三","lisi","456","2509647"));
+            planDetails.add(new TwoDetail("李四","zhangsan","654","7569052"));
         }
         return planDetails;
     }

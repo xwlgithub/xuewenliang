@@ -1,6 +1,10 @@
 package com.itxwl.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.itxwl.demo.ChildrenServiceA;
+import com.itxwl.demo.CurrencyDataDto;
+import com.itxwl.demo.EnvironMental;
+import com.itxwl.mayi.PayContext;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -18,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -29,10 +34,14 @@ import java.util.*;
 @RequestMapping("/export")
 @AllArgsConstructor
 public class ExcelPortController {
-
+    private PayContext payContext;
     @GetMapping("exportTableDatas")
     public void   exportTableDatas(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        EasyExcel.write(response.getOutputStream(),PlanDetail.class).sheet("1234").doWrite(PlanDetail.getPlanDetail());
+        String datetime=String.valueOf(Calendar.getInstance().getTimeInMillis())+".xls";
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-disposition","attachment;filename="+new String(datetime.getBytes(),"iso-8859-1")+"");
+        EasyExcel.write(response.getOutputStream(),PlanDetail.class).sheet().doWrite(PlanDetail.getPlanDetail());
 //        Map<String, Object> map = new HashMap<>();
 ////从其它方法获的得集合
 //        List<PlanDetail> planManageList = PlanDetail.getPlanDetail();
@@ -86,13 +95,22 @@ public class ExcelPortController {
 //        }
 //        map.put("success", true);
 //        map.put("url",datetime);
-        //return map;
-        boolean ss = StringUtils.isEmpty("ss");
-        boolean ss1 = ObjectUtils.isEmpty("ss");
+//        boolean ss = StringUtils.isEmpty("ss");
+//        boolean ss1 = ObjectUtils.isEmpty("ss");
     }
 
-    public static void main(String[] args) {
-        boolean ss_ = ObjectUtils.isEmpty("ss ");
-        System.out.println(ss_);
+//    public static void main(String[] args) throws Exception{
+//        Class aClass = Class.forName("com.itxwl.controller.PlanDetail");
+//        Method[] methods = aClass.getMethods();
+//        System.out.println(methods);
+//    }
+    @GetMapping("demo")
+    public String getDemo(String pareCode){
+        String s = payContext.toGetData(pareCode);
+        return s;
+//        CurrencyDataDto currencyDataDto = new ChildrenServiceA();
+//        EnvironMental environMental = new EnvironMental(currencyDataDto);
+//        String s = environMental.convertEnvironMental();
+//        return s;
     }
 }
