@@ -39,7 +39,10 @@ public class PlanDetail {
             Iterator<PlanDetail> iterator = planDetails.iterator();
             while (iterator.hasNext()){
                 PlanDetail next = iterator.next();
-                if (next.getName().equals((String) maps.get("name")))iterator.remove();
+                String name = (String) maps.get("name");
+                if (next.getName().equals(name)){
+                    iterator.remove();
+                }
             }
 
         }
