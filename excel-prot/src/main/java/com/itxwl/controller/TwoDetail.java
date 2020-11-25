@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: 薛
@@ -26,10 +29,22 @@ public class TwoDetail {
     @ExcelProperty(value = "邮箱")
     private String email;
 
-    public static List<TwoDetail> getPlanDetail(){
+    public static List<TwoDetail> getPlanDetail(Map<String,Object> params){
         List<TwoDetail> planDetails=new LinkedList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             planDetails.add(new TwoDetail("李四","zhangsan","654","7569052"));
+        }
+        planDetails.add(new TwoDetail("李四四","ll","89","9+78"));
+        if (params!=null){
+            Iterator<TwoDetail> iterator = planDetails.iterator();
+            while (iterator.hasNext()){
+                TwoDetail next = iterator.next();
+                String name = (String) params.get("name");
+                if (next.getName().equals(name)){
+                    iterator.remove();
+                }
+            }
+
         }
         return planDetails;
     }

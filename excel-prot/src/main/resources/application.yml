@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: export-server
+  redis:
+    port: 6379
+    host: localhost
 #  datasource:
 #    driver-class-name: com.mysql.jdbc.Driver
 #    username: root

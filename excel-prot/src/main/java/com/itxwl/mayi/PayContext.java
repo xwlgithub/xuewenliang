@@ -1,6 +1,9 @@
 package com.itxwl.mayi;
 
+import com.itxwl.result.R;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @Auther: 薛
@@ -8,20 +11,22 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 @Component
+/**
+ * 通用方法体获取指定执行策略
+ */
 public class PayContext {
 
-    public String toGetData(String pageCode){
-        //MyStatery statery = StateryGongChang.getStatery(pageCode);
+    public R toGetData(String pageCode, Map<String,Object> params){
         MyStatery stateryBean = null;
         try {
             stateryBean = StateryGongChang.getStateryBean(pageCode);
         } catch (RuntimeException e) {
-            return e.getMessage();
+            return R.error(e.getMessage());
         }
         if (stateryBean==null){
-            return "暂无此执行策略模式,请更换其它哦~";
+            return R.error("暂无此执行策略模式,请更换其它哦~");
         }
-        String s = stateryBean.startData();
-        return s;
+        R data = stateryBean.startData(params);
+        return data;
     }
 }

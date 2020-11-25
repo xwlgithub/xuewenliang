@@ -1,14 +1,30 @@
 package com.itxwl.mayi;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
 /**
  * @Auther: 薛
  * @Date: 2020/11/21 17:17
  * @Description:
  */
 // TODO 具体调用执行策略工厂分发类
+@Component
 public class StateryGongChang {
+    private static final String STATERY_PARAM="StaterParam";
+    @Autowired
+    private RedisTemplate redisTemplate;
+    private static  StateryGongChang stateryGongChang;
+    @PostConstruct
+    public void init(){
+        stateryGongChang=this;
+        stateryGongChang.redisTemplate=this.redisTemplate;
+    }
     /**
-     * 没有使用自动注入
+     * test -> 测试
      *
      * @param pageCodeType
      * @return
@@ -39,7 +55,9 @@ public class StateryGongChang {
         MyStatery myStatery = null;
         String stateryName = null;
         try {
-            stateryName = StateryEnum.valueOf(pageCodeType).getStateryName();
+            StateryEnum stateryEnum = StateryEnum.valueOf(pageCodeType);
+            stateryName = stateryEnum.getStateryName();
+            stateryGongChang.redisTemplate.opsForValue().set(STATERY_PARAM,stateryEnum.getDomainClassPath());
         } catch (Exception e) {
            throw  new RuntimeException("暂无此策略模式");
         }
