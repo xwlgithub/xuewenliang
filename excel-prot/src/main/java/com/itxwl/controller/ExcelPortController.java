@@ -99,9 +99,10 @@ public class ExcelPortController {
     @GetMapping("demo")
     public void getDemo(String pareCode,HttpServletResponse response,@RequestBody(required = false) Map<String,Object> params)throws Exception {
         R datas = payContext.toGetData(pareCode,params);
-        String datetime = String.valueOf(Calendar.getInstance().getTimeInMillis()) + ".xls";
+        String datetime = String.valueOf(Calendar.getInstance().getTimeInMillis()) + ".xlsx";
         response.setCharacterEncoding("utf-8");
-        response.setContentType("application/vnd.ms-excel");
+        //response.setContentType("application/vnd.ms-excel");
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-disposition", "attachment;filename=" + new String(datetime.getBytes(), "iso-8859-1") + "");
         EasyExcel.write(response.getOutputStream(),
                 Class.forName((String) redisTemplate.opsForValue().get(ServerRedisKey.STATERY_PARAM)))
