@@ -14,8 +14,8 @@ spring:
         other:  #从数据源
           driver-class-name: com.mysql.jdbc.Driver
           username: root
-          password: root
-          url: jdbc:mysql://-:3306/bladex?characterEncoding=utf-8
+          password: zhangsan456
+          url: jdbc:mysql://49.235.81.59:3306/bladex?characterEncoding=utf-8
     druid:
       initial-size: 10 #初始化10个连接
       max-active: 100  #最大连接100

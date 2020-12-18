@@ -24,7 +24,7 @@ public class DataSourceServiceImpl implements IDataSourceService {
         DruidDataSource build = DruidDataSourceBuilder.create().build();
         //如果是1调用基础库-也就是本身的默认库
         if (id.equals(1)){
-                return findSourceDatas();
+            return findSourceDatas();
         }
         return findSourceDatasT();
     }
