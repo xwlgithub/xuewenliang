@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="datasourc-etest" />
+        <module name="demo" />
         <module name="excel-prot" />
         <module name="lambda-test" />
         <module name="log4-jtest" />
@@ -27,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="datasourc-etest" options="-parameters" />
+      <module name="demo" options="-parameters" />
       <module name="excel-prot" options="-parameters" />
       <module name="jvm-test" options="-parameters" />
       <module name="lambda-test" options="-parameters" />

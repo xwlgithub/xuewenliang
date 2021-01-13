@@ -1,0 +1,23 @@
+## 版本
+version: '3.8'
+## 服务组
+services:
+  #jar服务
+  xwldemo:
+    #默认当前目录构建自定义镜像加载Dockerfile运行
+    build: .
+    image: xwldemo
+    links:
+      - redis
+    #依赖redis服务(容器名称对称)
+    depends_on:
+      - redis
+    #对外开放端口8888对应内置端口
+    ports:
+      - "8888:8888"
+  #redis服务
+  redis:
+      #引用dockerhub仓库镜像
+      image: "redis:alpine3.12"
+
+

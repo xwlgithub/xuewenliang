@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  redis:
+    host: redis
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
