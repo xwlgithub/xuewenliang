@@ -17,6 +17,7 @@
         <module>thread-test</module>
         <module>datasourc-etest</module>
         <module>excel-prot</module>
+        <module>design-patterns</module>
     </modules>
     <packaging>pom</packaging>
 </project>

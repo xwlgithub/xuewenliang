@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="datasourc-etest" />
         <module name="demo" />
+        <module name="design-patterns" />
         <module name="excel-prot" />
         <module name="lambda-test" />
         <module name="log4-jtest" />
@@ -29,6 +30,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="datasourc-etest" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="design-patterns" options="-parameters" />
       <module name="excel-prot" options="-parameters" />
       <module name="jvm-test" options="-parameters" />
       <module name="lambda-test" options="-parameters" />
