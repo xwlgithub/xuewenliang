@@ -46,7 +46,6 @@ spring:
     #服务名
   application:
     name: datasource-server
-    #IP
 eureka:
   instance:
     hostname: localhost

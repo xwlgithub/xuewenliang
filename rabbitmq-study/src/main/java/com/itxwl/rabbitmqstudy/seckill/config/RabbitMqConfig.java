@@ -21,7 +21,6 @@ import java.util.Map;
 @Configuration
 @SuppressWarnings("ALL")
 public class RabbitMqConfig {
-    private static String ss="sss";
     //交换机名称
     public static  String ITEM_TOPIC_EXCHANGE="xwl_exchange";
     //队列名称
