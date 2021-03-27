@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
-import com.example.demo.da;
+import com.example.demo.enums.Demo;
+import com.example.demo.enums.da;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Auther: 薛
@@ -14,22 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("hello")
+@Controller
 public class HelloController {
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
-    @GetMapping("getNum")
-    public String getNum(){
-        Long ss = redisTemplate.opsForValue().increment("ss");
-        return "婷婷爱薛少"+ss+"次";
+    @GetMapping("demo")
+    public void demo(){
+       List<Demo> demoList=new ArrayList<>();
+        while (true){
+            demoList.add(new Demo());
+        }
     }
 
-    public static void main(String[] args) {
-        String sp="YR0081";
-        sp=sp.replaceAll("[^(0-9)]","");
-        Long newCode = Long.parseLong(sp) + 1;
-        System.out.println(newCode);
-        System.out.println(da.DE.getVa());
-    }
+
+
 
 }

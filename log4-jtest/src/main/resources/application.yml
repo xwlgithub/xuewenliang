@@ -10,9 +10,9 @@ logging:
 #    mongodb:
 #      uri: mongodb://admin:TFIot20190401@122.227.10.210:20004/test
 #      username: admin
-spring:
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017
-      database: tfenergy
+#spring:
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017
+#      database: tfenergy
 #排除mongodb自动加载

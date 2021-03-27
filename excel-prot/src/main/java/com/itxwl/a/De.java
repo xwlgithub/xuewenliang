@@ -11,12 +11,12 @@ import java.util.Map;
  * @Description:
  */
 public class De {
-    public static void main(String[] args) {
-        Map<String,Object> map=new HashMap<>();
-        boolean empty = MapUtils.isEmpty(map);
-        System.out.println(empty);
-        if (map.size()==0){
-            System.out.println("空");
-        }
-    }
+//    public static void main(String[] args) {
+//        Map<String,Object> map=new HashMap<>();
+//        boolean empty = MapUtils.isEmpty(map);
+//        System.out.println(empty);
+//        if (map.size()==0){
+//            System.out.println("空");
+//        }
+//    }
 }

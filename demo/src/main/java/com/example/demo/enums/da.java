@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,5 +11,4 @@ public enum da {
 
     DE("SS");
 private String va;
-
 }

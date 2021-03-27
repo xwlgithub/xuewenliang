@@ -20,6 +20,19 @@
         </dependency>
     </dependencies>
     <artifactId>design-patterns</artifactId>
-
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/java/</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
+</build>
 
 </project>

@@ -24,6 +24,7 @@ public class DemoServiceImpl implements DemoService {
         if (!StringUtils.isEmpty(data)) {
             try {
                 ix = dd / data;
+                return ix;
             } catch (Exception e) {
                 logger.error("计算失败");
                throw  new RuntimeException("计算失败");

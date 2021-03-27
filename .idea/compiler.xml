@@ -2,18 +2,22 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="datasourc-etest" />
-        <module name="demo" />
-        <module name="design-patterns" />
-        <module name="excel-prot" />
-        <module name="lambda-test" />
-        <module name="log4-jtest" />
-        <module name="logback" />
         <module name="rabbitmq-study" />
+        <module name="log4-jtest" />
+        <module name="demo" />
+        <module name="excel-prot" />
+        <module name="logback" />
+        <module name="mv-mvc" />
+        <module name="log4j-test" />
+        <module name="datasource-test" />
+        <module name="design-patterns" />
+        <module name="datasourc-etest" />
+        <module name="lambda-test" />
         <module name="thread-test" />
       </profile>
     </annotationProcessing>
@@ -22,6 +26,7 @@
       <module name="log-back" target="1.8" />
       <module name="logback-test" target="1.8" />
       <module name="logFour" target="1.8" />
+      <module name="my-mvc" target="1.8" />
       <module name="rabbit-study" target="1.8" />
       <module name="xwl-t" target="1.8" />
     </bytecodeTargetLevel>
@@ -29,6 +34,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="datasourc-etest" options="-parameters" />
+      <module name="datasource-test" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="design-patterns" options="-parameters" />
       <module name="excel-prot" options="-parameters" />
@@ -36,9 +42,12 @@
       <module name="lambda-test" options="-parameters" />
       <module name="log-back" options="-parameters" />
       <module name="log4-jtest" options="-parameters" />
+      <module name="log4j-test" options="-parameters" />
       <module name="logFour" options="-parameters" />
       <module name="logback" options="-parameters" />
       <module name="logback-test" options="-parameters" />
+      <module name="mv-mvc" options="-parameters" />
+      <module name="my-mvc" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />
       <module name="thread-test" options="-parameters" />
