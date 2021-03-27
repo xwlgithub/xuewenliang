@@ -50,7 +50,6 @@ public class SendKillListener {
 
     /**
      * 监听主队列~
-     *
      * @param message
      * @param map
      * @param channel
@@ -63,6 +62,7 @@ public class SendKillListener {
         Integer shopCount=0;
         //第一个请求进来获取库存-先去缓存redis找对应key值如果没有发送一个连接查询后续无需再次获取库存
         if (StringUtils.isEmpty(re.opsForValue().get("stockCount"))) {
+            //设置1小时之后 该key值失效
             re.opsForValue().set("stockCount", stokOrderMapper.findCountByShopType(1), 60, TimeUnit.MINUTES);
             shopCount = ((Integer) re.opsForValue().get("stockCount"));
         }else {

@@ -1,5 +1,5 @@
 server:
-  port: 7777
+  port: 7778
 spring:
   #基础连接四项配置
   datasource:
@@ -46,7 +46,6 @@ spring:
     #服务名
   application:
     name: datasource-server
-    #IP
 eureka:
   instance:
     hostname: localhost

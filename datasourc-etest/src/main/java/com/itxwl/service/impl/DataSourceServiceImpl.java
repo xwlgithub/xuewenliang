@@ -44,7 +44,7 @@ public class DataSourceServiceImpl implements IDataSourceService {
         int currsorl = (query.getCurrent() - 1) * query.getSize();
         List<TfEmail> all = dataSourceMapper.findAll(currsorl, query.getSize());
         Integer counts = dataSourceMapper.findCounts();
-        return new MyPage<>(currsorl,query.getSize(),all,counts);
+        return new MyPage<>(query.getCurrent(),query.getSize(),all,counts);
     }
 
     /**

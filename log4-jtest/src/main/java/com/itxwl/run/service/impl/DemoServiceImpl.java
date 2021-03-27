@@ -19,6 +19,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public Integer js(Integer data)  throws RuntimeException{
         logger.fatal("访问接口");
+        System.out.println("ddd");
         Integer dd = 5;
         Integer ix = 0;
         if (!StringUtils.isEmpty(data)) {
