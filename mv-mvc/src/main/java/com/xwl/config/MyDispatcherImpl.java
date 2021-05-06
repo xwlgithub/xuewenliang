@@ -2,6 +2,8 @@ package com.xwl.config;
 
 import com.xwl.annotation.*;
 import com.xwl.controller.DemoController;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
-
 public class MyDispatcherImpl extends HttpServlet {
     //保存待实例化所有类得路径
     List<String> classUrls = new ArrayList<>();
@@ -192,6 +193,7 @@ public class MyDispatcherImpl extends HttpServlet {
                 doScanPackage(packageNames + "." + path);
             } else {
                 String className = packageNames + "." + filePath.getName().replace(".class", "");
+                //存储url
                 classUrls.add(className);
             }
         }

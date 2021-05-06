@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Auther: 薛
@@ -20,10 +22,13 @@ import java.util.List;
 @RequestMapping("hello")
 @Controller
 public class HelloController {
+    //动态加载配置文件
 
     @GetMapping("demo")
     public void demo(){
        List<Demo> demoList=new ArrayList<>();
+       new ConcurrentHashMap<>();
+       new Hashtable<>();
         while (true){
             demoList.add(new Demo());
         }

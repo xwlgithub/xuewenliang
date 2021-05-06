@@ -14,11 +14,12 @@
         <module name="logback" />
         <module name="mv-mvc" />
         <module name="log4j-test" />
+        <module name="thread-test" />
         <module name="datasource-test" />
-        <module name="design-patterns" />
+        <module name="my-annotation" />
         <module name="datasourc-etest" />
         <module name="lambda-test" />
-        <module name="thread-test" />
+        <module name="design-patterns" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -47,6 +48,7 @@
       <module name="logback" options="-parameters" />
       <module name="logback-test" options="-parameters" />
       <module name="mv-mvc" options="-parameters" />
+      <module name="my-annotation" options="-parameters" />
       <module name="my-mvc" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />

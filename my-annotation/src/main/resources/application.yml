@@ -1,0 +1,25 @@
+#端口配置
+server:
+  port: 8787
+  #数据库基础配置信息
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/xwl?characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: 自定义注解服务
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名规则支持
+    cache-enabled: true
+    #扫描mapper持久层接口
+  mapper-locations: classpath:com.xwl/**/mapper/*Mapper.xml
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+#日志配置
+logging:
+  config: classpath:log4j2-spring.xml
