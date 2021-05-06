@@ -3,7 +3,6 @@ package com.xwl.config.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 /**
  * @author xueWenLiang

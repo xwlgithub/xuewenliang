@@ -1,12 +1,7 @@
 package com.xwl.utils;
 
 import com.xwl.config.enums.XwlResultErrorEnum;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author xueWenLiang

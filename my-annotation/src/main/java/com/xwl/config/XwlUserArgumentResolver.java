@@ -6,7 +6,6 @@ import com.xwl.config.exception.XwlException;
 import com.xwl.domain.XwlUser;
 import com.xwl.utils.JwtUtils;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @AllArgsConstructor
 @Component
-@Slf4j
 public class XwlUserArgumentResolver  implements HandlerMethodArgumentResolver {
     /**
      * 执行判断是否满足使用规范
@@ -52,17 +50,15 @@ public class XwlUserArgumentResolver  implements HandlerMethodArgumentResolver {
      */
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
-        log.info("拦截自定义用户信息注解封装用户信息->");
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         XwlUser xwlUser= null;
         try {
             xwlUser = JwtUtils.getUserParameters(request);
         } catch (Exception e) {
-            log.error(XwlResultErrorEnum.FORBIDDEN.getMsg()+"->"+request);
             throw new XwlException(XwlResultErrorEnum.FORBIDDEN);
         }
         //不排除以下情况->抛出无鉴权权限
-        if (ObjectUtils.isEmpty(xwlUser))throw new XwlException(XwlResultErrorEnum.FORBIDDEN);log.info(XwlResultErrorEnum.FORBIDDEN.getMsg());;
+        if (ObjectUtils.isEmpty(xwlUser))throw new XwlException(XwlResultErrorEnum.FORBIDDEN);
         return xwlUser;
     }
 }
