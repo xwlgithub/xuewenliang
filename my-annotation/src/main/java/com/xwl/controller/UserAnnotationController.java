@@ -24,9 +24,9 @@ public class UserAnnotationController {
     private XwlUserMapper xwlUserMapper;
 
     @GetMapping("getUserInfo")
-    public R<XwlUser> getUserInfo(@RequestParam("sp") Long sp, @RequestUser XwlUser xwlUser) {
+    public R<XwlUser> getUserInfo(@RequestUser XwlUser xwlUser) {
         System.out.println("获取用户信息" + xwlUser.toString());
-        XwlUser xwlUser1 = xwlUserMapper.selectById(sp);
+        XwlUser xwlUser1 = xwlUserMapper.findUserByName(xwlUser.getUserName());
         if (ObjectUtils.isEmpty(xwlUser1)) {
             return R.exceptionReturn(XwlResultErrorEnum.USER_NOT_NULL);
         }

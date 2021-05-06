@@ -16,10 +16,10 @@
         <module name="log4j-test" />
         <module name="thread-test" />
         <module name="datasource-test" />
-        <module name="my-annotation" />
+        <module name="design-patterns" />
         <module name="datasourc-etest" />
         <module name="lambda-test" />
-        <module name="design-patterns" />
+        <module name="my-annotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

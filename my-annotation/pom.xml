@@ -76,6 +76,10 @@
             <artifactId>jjwt</artifactId>
             <version>${jwt-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
     <!--maven编译器指定jdk版本-->
     <build>

@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface XwlUserMapper extends BaseMapper<XwlUser> {
-    @Select("select *  from xwl_user where id=#{id}dsadasdsa")
-    XwlUser getUserInfo(@Param("id") Long id);
+    @Select("select *  from xwl_user where user_name=#{userName}")
+    XwlUser findUserByName(@Param("userName") String userName);
 }

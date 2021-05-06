@@ -29,11 +29,13 @@ import java.util.Map;
  *
  * jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
  */
-//@Component
+@Component
 public class JwtUtils {
     private static final String SIGN_NAME = "xuewenliang";
     private static final String HEADER_TOKEN_KEY = "xwl_token";
     private static long mill = 60000L;
+    private static final String ZHANG_SAN="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiLlvKDkuIkiLCJzdWIiOiIyNTAiLCJpYXQiOjE2MTk3NTM3MDF9.FyRuh7hvuB_mPDbCqCBGxB8YW4YDxj--XmVj2d-KzU4";
+    private static final String LI_SI="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiLmnY7lm5siLCJzdWIiOiLmuZbljZfnnIEiLCJpYXQiOjE2MjAyOTA2NDB9.iQa7ICboE6JHpJvvx8tFoOa-kWgw8Z0IYDeh8h0OXPo";
 
     /**
      * 生成token
