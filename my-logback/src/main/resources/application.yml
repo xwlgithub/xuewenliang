@@ -1,0 +1,27 @@
+server:
+  port: 12345
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  application:
+    name: 日志服务
+  datasource:
+    url: jdbc:mysql://localhost:3306/xwl?characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+mybatis-plus:
+  mapper-locations: classpath:com.itxwl/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true
+logging:
+  config: classpath:logback-spring.xml
+logs:
+  filePath: D:\\logback\\logs

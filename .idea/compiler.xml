@@ -7,19 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rabbitmq-study" />
-        <module name="log4-jtest" />
+        <module name="design-patterns" />
         <module name="demo" />
+        <module name="log4-jtest" />
         <module name="excel-prot" />
         <module name="logback" />
-        <module name="mv-mvc" />
-        <module name="log4j-test" />
-        <module name="thread-test" />
-        <module name="datasource-test" />
-        <module name="design-patterns" />
         <module name="datasourc-etest" />
+        <module name="mv-mvc" />
         <module name="lambda-test" />
+        <module name="my-logback" />
+        <module name="datasource-test" />
+        <module name="thread-test" />
+        <module name="log4j-test" />
         <module name="my-annotation" />
+        <module name="rabbitmq-study" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -49,6 +50,7 @@
       <module name="logback-test" options="-parameters" />
       <module name="mv-mvc" options="-parameters" />
       <module name="my-annotation" options="-parameters" />
+      <module name="my-logback" options="-parameters" />
       <module name="my-mvc" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />
