@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
- * @author wh_king
- * @date 2020-9-20  Spring 工具类
+ * @author xuewenliang
+ * @date 2021-05-12  Spring 工具类
  */
 @Slf4j
 @Service

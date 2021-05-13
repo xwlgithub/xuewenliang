@@ -16,7 +16,6 @@
         <boot-version>2.0.4.RELEASE</boot-version>
         <mysql-version>5.1.47</mysql-version>
         <mybatis-plus-version>2.2.0</mybatis-plus-version>
-        <jwt-version>0.9.1</jwt-version>
     </properties>
     <dependencies>
         <!--SpringBoot核心依赖-->
