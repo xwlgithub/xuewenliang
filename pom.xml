@@ -21,6 +21,7 @@
         <module>mv-mvc</module>
         <module>my-annotation</module>
         <module>my-logback</module>
+        <module>my-security</module>
     </modules>
     <packaging>pom</packaging>
 </project>

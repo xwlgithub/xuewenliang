@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="design-patterns" />
         <module name="demo" />
+        <module name="my-security" />
         <module name="log4-jtest" />
         <module name="excel-prot" />
         <module name="logback" />
@@ -52,6 +53,7 @@
       <module name="my-annotation" options="-parameters" />
       <module name="my-logback" options="-parameters" />
       <module name="my-mvc" options="-parameters" />
+      <module name="my-security" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />
       <module name="thread-test" options="-parameters" />
