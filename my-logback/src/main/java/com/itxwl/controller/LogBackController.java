@@ -7,12 +7,10 @@ import com.itxwl.domain.XwlUser;
 import com.itxwl.mapper.XwlUserMapper;
 import com.itxwl.utils.MyUtils;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
-
 /**
  * @author xueWenLiang
  * @date 2021/5/10 14:57

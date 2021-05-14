@@ -14,20 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.Map;
 
 /**
  * @author xueWenLiang
  * @date 2021/5/11 15:40
- * @Description 描述信息
+ * @Description 切面拦截日志注解封装日志运行信息体
  */
 @Aspect
 @Component
