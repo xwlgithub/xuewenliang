@@ -1,6 +1,11 @@
-spring:
-  security:
-    user:
-      name: user
-      password: 123456
-      roles: demos,admin
+#spring:
+#  security:
+#    user:
+#      name: user
+#      password: 123456789
+#      roles: demos,admin,user
+
+logging:
+  pattern:
+    level:
+      org.springframework.security: debug
