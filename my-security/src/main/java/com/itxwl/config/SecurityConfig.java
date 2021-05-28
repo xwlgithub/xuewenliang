@@ -2,12 +2,12 @@ package com.itxwl.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itxwl.filter.RestUserNamePasswordFilter;
+import com.itxwl.userdetail.UserDetailServiceImpl;
+import com.itxwl.userdetail.UserDetailsPasswordServiceImpl;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.var;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
@@ -25,16 +24,20 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
+@Configuration
+@Order(99)
 //@Import(SecurityProblemSupport.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    private final SecurityProblemSupport securityProblemSupport;
+    private final DataSource dataSource;
+    private final UserDetailServiceImpl userDetailService;
+    private final UserDetailsPasswordServiceImpl userDetailsPasswordService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录
@@ -52,13 +55,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(jsonAuthenticationFailureHandler())
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/**").hasRole("USER")
+                .antMatchers("/authorizes/**").hasRole("ADMIN")
                 //鉴权放行
-                .antMatchers("/index","/login","/authorizes/**","/api/**").permitAll()
+                .antMatchers("/index","/login","/h2-console/**","/error/**").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().httpBasic();
+                .and().httpBasic()
                 //添加过滤器
-               // .and().addFilterAt(userNamePasswordFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterAt(userNamePasswordFilter(), UsernamePasswordAuthenticationFilter.class);
 //                .and()
                 //添加记住我
                // .rememberMe().tokenValiditySeconds(3000 * 10).rememberMeCookieName("xwl");
@@ -117,20 +122,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                //.password(passwordEncoder().encode("123456789"))
-                .password("{bcrypt}$2a$10$Pp1.wmvTYxkSsP4ahWHVKOrlu9ti.bjqX3k0n9a70H9jQ8F9oaFZ2")
-                .roles("user", "admin")
-                .and()
-                .withUser("users")
-                .password("{SHA-1}{eABYh0gkPCjzj2F7EMz5Q8F05/5o/1mit9Y1n4d4dns=}421b9d0311ab12ea175d206468266b46ae147a3d")
-                .roles("user", "admin")
+        auth.userDetailsService(userDetailService)
+                .userDetailsPasswordManager(userDetailsPasswordService)
+        .passwordEncoder(passwordEncoder());
+//        auth.jdbcAuthentication()
+//                .withDefaultSchema()
+//                .usersByUsernameQuery("select username,password,enabled from mooc_users where username=?")
+//                .authoritiesByUsernameQuery("select username,authority from mooc_authorities where username=?")
+//                .dataSource(dataSource)
+//        .passwordEncoder(passwordEncoder());
+        /*创建用户关联角色*/
+//                .withUser("user")
+//                //.password(passwordEncoder().encode("123456789"))
+//                .password("{bcrypt}$2a$10$Pp1.wmvTYxkSsP4ahWHVKOrlu9ti.bjqX3k0n9a70H9jQ8F9oaFZ2")
+//                .roles("USER", "ADMIN")
+//                .and()
+//                .withUser("users")
+//                .password("{SHA-1}{eABYh0gkPCjzj2F7EMz5Q8F05/5o/1mit9Y1n4d4dns=}421b9d0311ab12ea175d206468266b46ae147a3d")
+//                .roles("USER")
         ;
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/public/**", "/error")
+        web.ignoring().antMatchers("/public/**", "/error/**","/h2-console/**")
                 //放行静态资源
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
         ;

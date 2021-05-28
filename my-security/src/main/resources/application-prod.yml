@@ -1,0 +1,42 @@
+logging:
+  pattern:
+    console: '%clr(%d{E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint}
+              %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n'
+  level:
+    com:
+      itxwl: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+        jdbc:
+          core: TRACE
+
+#系统环境变量
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ""
+    #url: jdbc:h2:mem:test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+  h2:
+    console:
+      #显示 h2 嵌入式 ui 管理界面
+      enabled: true
+      # 访问 h2 管理界面路径
+      path: /h2-console
+      settings:
+        # 禁止输出Trace信息
+        trace: false
+        # 禁止远程访问 h2 管理界面
+        web-allow-others: false
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  profiles:
+    active: prod

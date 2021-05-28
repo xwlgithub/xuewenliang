@@ -52,6 +52,10 @@ private final MessageSource messageSource;
         registry.setOrder(1);
     }
 
+    /**
+     * 视图匹配
+     * @param registry
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");

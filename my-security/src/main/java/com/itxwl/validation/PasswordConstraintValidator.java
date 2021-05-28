@@ -9,8 +9,6 @@ import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.passay.*;
 import org.passay.spring.SpringMessageResolver;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 /**
  * @author xueWenLiang

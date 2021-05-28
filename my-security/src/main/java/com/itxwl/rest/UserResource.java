@@ -3,6 +3,8 @@ package com.itxwl.rest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 /**
  * @author xueWenLiang
  * @date 2021/5/15 10:03
@@ -32,8 +34,13 @@ public class UserResource {
         return "hello world xwlLogin";
     }
 
-    @GetMapping("/principal")
-    public String getPrincipal(){
+    @GetMapping("/principals")
+    public String getPrincipal(Principal principal){
         return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    @GetMapping("/principal")
+    public String getCurrentPrincipalName(Principal principal) {
+        return principal.getName();
     }
 }
