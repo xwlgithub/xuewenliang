@@ -2,15 +2,19 @@ package com.itxwl.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itxwl.filter.RestUserNamePasswordFilter;
+import com.itxwl.security.auth.ldap.LDAPMultiAuthenticationProvider;
+import com.itxwl.security.auth.ldap.LDAPUserRepo;
 import com.itxwl.userdetail.UserDetailServiceImpl;
 import com.itxwl.userdetail.UserDetailsPasswordServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -38,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final DataSource dataSource;
     private final UserDetailServiceImpl userDetailService;
     private final UserDetailsPasswordServiceImpl userDetailsPasswordService;
+    private final LDAPUserRepo ldapUserRepo;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录
@@ -122,9 +127,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService)
-                .userDetailsPasswordManager(userDetailsPasswordService)
-        .passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(daoAuthenticationProvider()).authenticationProvider(ldapMultiAuthenticationProvider());
+//                .userDetailsService(userDetailService)
+//                .userDetailsPasswordManager(userDetailsPasswordService)
+//        .passwordEncoder(passwordEncoder());
 //        auth.jdbcAuthentication()
 //                .withDefaultSchema()
 //                .usersByUsernameQuery("select username,password,enabled from mooc_users where username=?")
@@ -141,6 +147,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .password("{SHA-1}{eABYh0gkPCjzj2F7EMz5Q8F05/5o/1mit9Y1n4d4dns=}421b9d0311ab12ea175d206468266b46ae147a3d")
 //                .roles("USER")
         ;
+    }
+    @Bean
+    LDAPMultiAuthenticationProvider ldapMultiAuthenticationProvider(){
+        val lDAPMultiAuthenticationProvider=new LDAPMultiAuthenticationProvider(ldapUserRepo);
+        return lDAPMultiAuthenticationProvider;
+    }
+    @Bean
+    DaoAuthenticationProvider daoAuthenticationProvider(){
+        val daoAuthenticationProvider=new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsPasswordService(userDetailsPasswordService);
+        return daoAuthenticationProvider;
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

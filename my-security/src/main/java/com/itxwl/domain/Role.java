@@ -1,6 +1,7 @@
 package com.itxwl.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @date 2021/5/27 10:27
  * @Description 描述信息
  */
+@Builder//可以对当前对象进行builder封装
 @SuppressWarnings("all")
 @Data
 @Entity
