@@ -1,10 +1,14 @@
 package com.itxwl.rest;
 
+import com.itxwl.domain.Auth;
+import com.itxwl.domain.dto.LoginDto;
 import com.itxwl.domain.dto.UserDto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.itxwl.service.UserService;
+import com.itxwl.util.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -15,12 +19,19 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/authorize")
+@RequiredArgsConstructor
 public class AuthorizeResource {
-
-
+private final UserService userService;
+private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public UserDto register(@Valid @RequestBody UserDto userDto){
         return  userDto;
+    }
+
+
+    @PostMapping("/token")
+    public Auth login(@Valid @RequestBody LoginDto loginDto) {
+        return userService.login(loginDto.getUsername(),loginDto.getPassword());
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author xueWenLiang
  * @date 2021/5/27 13:51
- * @Description 描述信息
+ * @Description 用户名校验
  */
 @Service
 @RequiredArgsConstructor

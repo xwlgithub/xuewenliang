@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author xueWenLiang
  * @date 2021/5/27 14:11
- * @Description 描述信息
+ * @Description 密码二次Hash
  */
 @Service
 @RequiredArgsConstructor

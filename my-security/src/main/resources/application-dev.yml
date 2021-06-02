@@ -40,7 +40,7 @@ spring:
     embedded:
       base-dn: dc=imooc,dc=com
       ldif: classpath:test-ldap-server.ldif
-      port: 8389
-    urls: ldap://localhost:8389/
+      port: 8388
+    urls: ldap://localhost:8388/
   profiles:
     active: dev

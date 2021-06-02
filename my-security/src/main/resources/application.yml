@@ -19,3 +19,9 @@ spring:
 #    initialization-mode: never
   profiles:
     active: dev
+mooc:
+  jwt:
+    access-token-expire-time: 300000
+    refresh-token-expire-tim: 2592000000
+    header: Authorization
+    prefix: "Bearer "

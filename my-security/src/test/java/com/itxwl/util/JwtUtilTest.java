@@ -1,5 +1,6 @@
 package com.itxwl.util;
 
+import com.itxwl.config.AppProperties;
 import com.itxwl.domain.Role;
 import com.itxwl.domain.User;
 import io.jsonwebtoken.Jwts;
@@ -24,7 +25,7 @@ public class JwtUtilTest {
     private JwtUtil jwtUtil;
     @BeforeEach
     public void setup(){
-        jwtUtil=new JwtUtil();
+        jwtUtil=new JwtUtil(new AppProperties());
     }
     @Test
     public void givenUserDetails_thenCreateTokenSuccess(){
@@ -37,7 +38,7 @@ public class JwtUtilTest {
         set.add(role_user);
         set.add(role_admin);
         User build = User.builder().username(username).authorities(set).build();
-        val token=jwtUtil.createJWTToken(build, 60_000);
+        val token=jwtUtil.createAccessToken(build);
         val parsedClaims= Jwts.parserBuilder()
                 .setSigningKey(jwtUtil.key)
                 .build()

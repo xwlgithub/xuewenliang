@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itxwl.filter.RestUserNamePasswordFilter;
 import com.itxwl.security.auth.ldap.LDAPMultiAuthenticationProvider;
 import com.itxwl.security.auth.ldap.LDAPUserRepo;
+import com.itxwl.security.jwt.JwtFilter;
 import com.itxwl.userdetail.UserDetailServiceImpl;
 import com.itxwl.userdetail.UserDetailsPasswordServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailServiceImpl userDetailService;
     private final UserDetailsPasswordServiceImpl userDetailsPasswordService;
     private final LDAPUserRepo ldapUserRepo;
+    private final JwtFilter jwtFilter;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录
@@ -68,7 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and().httpBasic()
                 //添加过滤器
-                .and().addFilterAt(userNamePasswordFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterAt(userNamePasswordFilter(), UsernamePasswordAuthenticationFilter.class)
+                //JWT过滤器
+                .addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class);
 //                .and()
                 //添加记住我
                // .rememberMe().tokenValiditySeconds(3000 * 10).rememberMeCookieName("xwl");
