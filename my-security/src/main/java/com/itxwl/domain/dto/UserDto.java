@@ -36,6 +36,10 @@ public class UserDto implements Serializable {
     @ValidEmail
     private String email;
     @NotNull
+//    @NotBlank
+//    @Size(min = 8,max = 20,message = "密码长度必须在8-20字符之间")
+    private String mobile;
+    @NotNull
     @NotBlank
     @Size(min = 4,max = 20,message = "姓名长度必须在4-20字符之间")
     private String name;

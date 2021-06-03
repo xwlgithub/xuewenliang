@@ -31,19 +31,61 @@ public class JwtUtil {
 
     /**
      * 根据用户信息封装token
+     *
      * @param userDetails
      * @return
      */
     public String createAccessToken(UserDetails userDetails) {
         return createJWTToken(userDetails, properties.getJwt().getAccessTokenExpireTime(), key);
     }
+
     /**
      * 根据用户信息封装token(RefreshToken)
+     *
      * @param userDetails
      * @return
      */
     public String createRefreshToken(UserDetails userDetails) {
         return createJWTToken(userDetails, properties.getJwt().getRefreshTokenExpireTim(), refreshKey);
+    }
+
+    public boolean validateAccessTokenWithoutExpiration(String jwtToken) {
+        return validateToken(jwtToken, key);
+    }
+
+    public boolean validateAccessToken(String jwtToken) {
+        return validateToken(jwtToken, key);
+    }
+
+    public boolean validateRefreshToken(String jwtToken) {
+        return validateToken(jwtToken, refreshKey);
+    }
+
+    public boolean validateToken(String jwtToken, Key signKey) {
+        try {
+            Jwts.parserBuilder().setSigningKey(signKey).build().parseClaimsJws(jwtToken);
+            return true;
+        } catch (ExpiredJwtException | SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public String buildAccessTokenWithRefreshToken(String jwtToken) {
+        return parseClaims(jwtToken, refreshKey)
+                .map(claims -> Jwts.builder()
+                        .setClaims(claims)
+                        .setExpiration(new Date(System.currentTimeMillis() + properties.getJwt().getAccessTokenExpireTime()))
+                        .signWith(key, SignatureAlgorithm.HS512).compact())
+                .orElseThrow(() -> new RuntimeException("访问受限"));
+    }
+
+    public Optional<Claims> parseClaims(String jwtToken, Key signKey) {
+        try {
+            val claims = Jwts.parserBuilder().setSigningKey(signKey).build().parseClaimsJws(jwtToken).getBody();
+            return Optional.of(claims);
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     /**

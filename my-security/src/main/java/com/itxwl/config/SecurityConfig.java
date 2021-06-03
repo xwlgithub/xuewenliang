@@ -62,10 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(jsonAuthenticationFailureHandler())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").hasRole("USER")
-                .antMatchers("/authorizes/**").hasRole("ADMIN")
+//                .antMatchers("/api/**").hasRole("USER")
+//                .antMatchers("/authorize/**").hasRole("USER")
                 //鉴权放行
-                .antMatchers("/index","/login","/h2-console/**","/error/**").permitAll()
+                .antMatchers("/index","/login","/h2-console/**","/error/**","/api/**", "/admin/**", "/authorize/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().httpBasic()
