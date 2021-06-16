@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author xueWenLiang
@@ -11,6 +12,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @Description 描述信息
  */
 @EnableEurekaClient
+@EnableTransactionManagement
 @SpringBootApplication
 @MapperScan("com.itxwl.mapper")
 public class MyLogBackApplication {

@@ -1,5 +1,9 @@
 package com.itxwl.rest;
 
+import com.itxwl.domain.User;
+import com.itxwl.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +16,9 @@ import java.security.Principal;
  */
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class UserResource {
-
+private final UserService userService;
 
     @GetMapping("greeting")
     public String greeting(){
@@ -42,5 +47,19 @@ public class UserResource {
     @GetMapping("/principal")
     public String getCurrentPrincipalName(Principal principal) {
         return principal.getName();
+    }
+
+
+    @GetMapping("/users/{username}")
+    public String getCurrentUsername(@PathVariable String username) {
+        return username;
+    }
+    //authentication.name.equals(returnObject.username)
+    @PostAuthorize("authentication.name.equals(returnObject.username)")
+    @GetMapping("/users/by-email/{email}")
+    public User getUserEmail(@PathVariable String email){
+        User user = new User();
+        user.setEmail(email);
+        return user;
     }
 }

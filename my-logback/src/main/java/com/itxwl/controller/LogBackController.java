@@ -5,6 +5,7 @@ import com.itxwl.config.enums.ApiReturnMsgEnmu;
 import com.itxwl.config.exception.ApiErrorException;
 import com.itxwl.domain.XwlUser;
 import com.itxwl.mapper.XwlUserMapper;
+import com.itxwl.service.impl.DemoService;
 import com.itxwl.utils.MyUtils;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class LogBackController {
     private XwlUserMapper xwlUserMapper;
+    private DemoService demoService;
 
     private final Logger logger = LoggerFactory.getLogger(LogBackController.class);
 
@@ -67,6 +69,12 @@ public class LogBackController {
             throw new ApiErrorException(ApiReturnMsgEnmu.SAVE_ERROR);
         }
         return x > 0 ? true : false;
+    }
+
+    @PostMapping("testDataSource")
+    public String testDataSource(@RequestBody XwlUser xwlUser){
+        demoService.ddd(xwlUser);
+        return "ssss";
     }
 
 

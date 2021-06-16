@@ -64,8 +64,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antMatchers("/api/**").hasRole("USER")
 //                .antMatchers("/authorize/**").hasRole("USER")
-                //鉴权放行
-                .antMatchers("/index","/login","/h2-console/**","/error/**","/api/**", "/admin/**", "/authorize/**").permitAll()
+                //鉴权放行 "/authorize/**""/api/**"
+                .antMatchers("/index","/login","/h2-console/**","/error/**", "/admin/**","/authorize/**").permitAll()
+                .antMatchers("/api/users/by-email/{email}").hasRole("USER")
+                //"hasRole('ADMIN') or authentication.name.equals(#username)"
+                .antMatchers("/api/users/{username}").access("hasRole('ADMIN') or @userService.isAuthEqualName(authentication,#username)")
                 .anyRequest()
                 .authenticated()
                 .and().httpBasic()

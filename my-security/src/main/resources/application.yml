@@ -6,6 +6,17 @@ logging:
 server:
   port: ${SERVER_PORT:8080}
 spring:
+  mail:
+    host: 4
+    password: 4324
+    port: 43241
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: 432432
   application:
     name: uaa
   messages:
@@ -25,3 +36,14 @@ mooc:
     refresh-token-expire-tim: 2592000000
     header: Authorization
     prefix: "Bearer "
+  ali:
+    api-key: XXX
+    api-secret: XXX
+  smsProvider:
+    name: ali
+  lean-cloud:
+    app-id: XXX
+    app-key: xxx
+  emailProvider:
+    app-key: XXX
+    name: sdasdf

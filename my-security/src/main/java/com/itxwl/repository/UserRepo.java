@@ -19,4 +19,11 @@ Optional<User> findOptionalByUsername(String username);
     long countByEmail(String email);
 
     long countByMobile(String mobile);
+
+    /**
+     * 根据邮箱查询用户
+     * @param email
+     * @return
+     */
+    Optional<User> findOptionByEmail(String email);
 }

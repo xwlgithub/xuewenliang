@@ -6,9 +6,12 @@ import com.itxwl.domain.User;
 import com.itxwl.repository.RoleRepo;
 import com.itxwl.repository.UserRepo;
 import com.itxwl.util.JwtUtil;
+import com.itxwl.util.TotpUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +34,12 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final RoleRepo roleRepo;
+    private final TotpUtil totpUtil;
 
     /**
      * 登录获取token
      *
-     * @param username
+     * @param username\
      * @param password
      * @return
      */
@@ -46,6 +50,10 @@ public class UserService {
                         jwtUtil.createAccessToken(user), jwtUtil.createRefreshToken(user)
                 )).orElseThrow(() -> new BadCredentialsException("用户名密码错误"));
 
+    }
+
+    public Auth login(UserDetails userDetails) {
+        return new Auth(jwtUtil.createAccessToken(userDetails), jwtUtil.createRefreshToken(userDetails));
     }
 
     /**
@@ -62,6 +70,7 @@ public class UserService {
         roles.add(role2);
         user.setAuthorities(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.withMfakey(totpUtil.encodeKeyToString());
         userRepo.save(user);
         return user;
     }
@@ -96,4 +105,46 @@ public class UserService {
         return userRepo.countByMobile(mobile) > 0;
     }
 
+
+    public Optional<User> findOptionalByUsernameAndPassword(String username, String password) {
+        return userRepo.findOptionalByUsername(username)
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()));
+    }
+
+    public UserDetails updatePassword(UserDetails userDetails, String newPassword) {
+        return userRepo.findOptionalByUsername(userDetails.getUsername())
+                .map(user ->
+                        (UserDetails) userRepo.save(user.withPassword(newPassword))
+                ).orElse(userDetails);
+    }
+
+    public Optional<String> createTotp(User user) {
+        return totpUtil.createTotp(user.getMfakey());
+    }
+
+    public Optional<User> findOptionalByUsername(String username) {
+        return userRepo.findOptionalByUsername(username);
+    }
+
+    public User saveUser(User user) {
+        return userRepo.save(user);
+    }
+
+    public Auth loginWithTotp(User user) {
+        val toSave = user.withMfakey(totpUtil.encodeKeyToString());
+        val saved = saveUser(toSave);
+        return login(saved);
+    }
+    public  boolean isAuthEqualName(Authentication authentication,String userName){
+        return authentication.getName().equals(userName);
+    }
+
+    /**
+     * 根据邮箱查询用户
+     * @param email
+     * @return
+     */
+    public Optional<User> findOptionalByEmail(String email){
+        return userRepo.findOptionByEmail(email);
+    }
 }

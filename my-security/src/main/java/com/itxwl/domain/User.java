@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -47,6 +46,18 @@ public class User implements UserDetails, Serializable {
     private boolean accountNonLocked;
     @Column(name = "credentials_non_expired",nullable = false)
     private boolean credentialsNonExpired;
+    /**
+     * 是否启用两部认证
+     */
+    @Builder.Default
+    @Column(name = "using_mfa",nullable = false)
+    private boolean usingMfa=false;
+    /**
+     * 两部认证key
+     */
+    @JsonIgnore
+    @Column(name = "mfa_key",nullable = false)
+    private String mfakey;
     /**
      * 多对多关联表-》mooc_user_roles
      */
