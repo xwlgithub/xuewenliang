@@ -5,6 +5,7 @@ import com.itxwl.filter.RestUserNamePasswordFilter;
 import com.itxwl.security.auth.ldap.LDAPMultiAuthenticationProvider;
 import com.itxwl.security.auth.ldap.LDAPUserRepo;
 import com.itxwl.security.jwt.JwtFilter;
+import com.itxwl.service.RoleHierarchyService;
 import com.itxwl.userdetail.UserDetailServiceImpl;
 import com.itxwl.userdetail.UserDetailsPasswordServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -45,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsPasswordServiceImpl userDetailsPasswordService;
     private final LDAPUserRepo ldapUserRepo;
     private final JwtFilter jwtFilter;
+    private final RoleHierarchyService roleHierarchyService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //表单登录
@@ -67,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //鉴权放行 "/authorize/**""/api/**"
                 .antMatchers("/index","/login","/h2-console/**","/error/**", "/admin/**","/authorize/**").permitAll()
                 .antMatchers("/api/users/by-email/{email}").hasRole("USER")
+                .antMatchers("/api/users/logins").hasRole("MANAGER")
                 //"hasRole('ADMIN') or authentication.name.equals(#username)"
                 .antMatchers("/api/users/{username}").access("hasRole('ADMIN') or @userService.isAuthEqualName(authentication,#username)")
                 .anyRequest()
@@ -190,4 +194,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 权限适配表达式
+     * @return
+     */
+//    @ConditionalOnProperty(prefix = "mooc.security", name = "role-hierarchy-enabled", havingValue = "true")
+    @Bean
+    public RoleHierarchyImpl roleHierarchy() {
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_MANAGER ROLE_MANAGER > ROLE_USER");
+        return roleHierarchy;
+    }
 }

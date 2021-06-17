@@ -57,4 +57,16 @@ public class UaaSecurityTest   extends BaseIntegrationTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+    /**
+     * 测试 MANAGER权限
+     *
+     * @throws Exception 异常
+     */
+    @WithMockUser(username = "user")
+    @Test
+    public void givenUserRole_Manager_shouldSuccess() throws Exception {
+        mockMvc.perform(get("/api/logins"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }
