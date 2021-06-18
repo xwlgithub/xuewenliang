@@ -68,7 +68,7 @@ public class UserService {
         Role role2 = role1.get();
         Set<Role> roles = new HashSet<>();
         roles.add(role2);
-        user.setAuthorities(roles);
+       // user.setAuthorities(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.withMfakey(totpUtil.encodeKeyToString());
         userRepo.save(user);

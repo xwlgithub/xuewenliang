@@ -2,13 +2,20 @@ package com.itxwl.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author xueWenLiang
@@ -61,14 +68,39 @@ public class User implements UserDetails, Serializable {
     /**
      * 多对多关联表-》mooc_user_roles
      */
+//    @ManyToMany
+//    //获取用户的同时将角色获取到-提高性能
+//    @Fetch(FetchMode.JOIN)
+//    @JoinTable(name = "mooc_users_roles",
+//    joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+//    )
+//    private Set<Role> authorities;
+    /**
+     * 角色列表，使用 Set 确保不重复
+     */
+    @Getter
+    @Setter
+    @Builder.Default
+    @JsonIgnore
     @ManyToMany
-    //获取用户的同时将角色获取到-提高性能
     @Fetch(FetchMode.JOIN)
-    @JoinTable(name = "mooc_users_roles",
-    joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
-    )
-    private Set<Role> authorities;
+    @JoinTable(
+            name = "mooc_users_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    @BatchSize(size = 20)
+    private Set<Role> roles = new HashSet<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .flatMap(role -> Stream.concat(
+                        Stream.of(new SimpleGrantedAuthority(role.getRoleName())),
+                        role.getPermissions().stream())
+                )
+                .collect(Collectors.toSet());
+    }
     //role集合与 getAuthorities()完全匹配
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {

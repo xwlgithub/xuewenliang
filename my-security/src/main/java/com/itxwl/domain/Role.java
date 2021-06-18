@@ -1,13 +1,19 @@
 package com.itxwl.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author xueWenLiang
@@ -27,4 +33,22 @@ public class Role implements GrantedAuthority, Serializable {
     private Long id;
     @Column(name = "role_name",unique = true,length = 50,nullable = false)
     private String authority;
+    /**
+     * 角色名称，有唯一约束，不能重复
+     */
+    @NotNull
+   // @Pattern(regexp = Constants.PATTERN_ROLE_NAME)
+    @Column(name = "role_name", unique = true, nullable = false, length = 50)
+    private String roleName;
+    /**
+     * 角色对应权限集合
+     */
+    @JsonIgnore
+    @Fetch(FetchMode.JOIN)
+    @ManyToMany
+    @JoinTable(
+            name = "mooc_roles_permissions",
+            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
+    private Set<Permission> permissions = new HashSet<>();
 }
