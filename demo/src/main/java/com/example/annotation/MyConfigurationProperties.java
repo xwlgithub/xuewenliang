@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author xueWenLiang
  * @date 2021/4/25 10:21
- * @Description 测试master分支修改得东西
+ * @Description 的撒大大撒
  */
 @Configuration
 //@EnableConfigurationProperties(MyProperties.class)
