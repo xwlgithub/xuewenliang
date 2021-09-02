@@ -22,6 +22,7 @@
         <module>my-annotation</module>
         <module>my-logback</module>
         <module>my-security</module>
+        <module>stream-rabbitmq</module>
     </modules>
     <packaging>pom</packaging>
 </project>

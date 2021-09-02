@@ -1,7 +1,6 @@
 package com.itxwl.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.itxwl.domain.TfEmail;
 import com.itxwl.service.IDataSourceService;
 import com.itxwl.util.MyPage;

@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -112,6 +111,14 @@ public class Demo {
         instance.add(Calendar.DAY_OF_MONTH,-1);
         String format = simpleDateFormat.format(instance.getTime());
         System.out.println(format);
+    }
+
+    @Test
+    public void TTTTT(){
+        List<String> strings = Arrays.asList("zhangsan", "lisi", "wangwu");
+        String name="lisi";
+        String result = strings.stream().filter(s -> s.equals(name)).collect(Collectors.joining());
+        System.out.println(result);
     }
 
 }

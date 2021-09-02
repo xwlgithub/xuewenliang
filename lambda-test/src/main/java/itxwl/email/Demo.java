@@ -1,8 +1,6 @@
 package itxwl.email;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Auther: 薛
@@ -11,6 +9,13 @@ import java.util.List;
  */
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("欢迎瑶瑶神仙和水哥  哈哈哈");
+        List<String> strings = Arrays.asList("zhangsan", "lisi");
+        Iterator<String> bidNoIterators = strings.iterator();
+        Map<String, String> bidWithNameMaps=new HashMap<>();
+        while (bidNoIterators.hasNext()){
+            String project = bidNoIterators.next();
+            bidWithNameMaps.put(project,project);
+        }
     }
+
 }

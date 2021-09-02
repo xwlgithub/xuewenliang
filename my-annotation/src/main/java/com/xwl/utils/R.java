@@ -72,4 +72,5 @@ public class R<T> {
         r.setMessage(message);
         return r;
     }
+    
 }

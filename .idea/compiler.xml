@@ -22,6 +22,7 @@
         <module name="log4j-test" />
         <module name="my-annotation" />
         <module name="rabbitmq-study" />
+        <module name="stream-rabbitmq" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -31,6 +32,7 @@
       <module name="logFour" target="1.8" />
       <module name="my-mvc" target="1.8" />
       <module name="rabbit-study" target="1.8" />
+      <module name="stream-rabbitmq" target="1.8" />
       <module name="xwl-t" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -56,6 +58,7 @@
       <module name="my-security" options="-parameters" />
       <module name="rabbit-study" options="-parameters" />
       <module name="rabbitmq-study" options="-parameters" />
+      <module name="stream-rabbitmq" options="-parameters" />
       <module name="thread-test" options="-parameters" />
       <module name="xwl-t" options="-parameters" />
     </option>
