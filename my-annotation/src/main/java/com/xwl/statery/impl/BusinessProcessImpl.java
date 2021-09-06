@@ -21,12 +21,12 @@ public class BusinessProcessImpl implements BusinessProcessAnnotation {
 
     @Override
     public String type() {
-        return null;
+        return type;
     }
 
     @Override
     public String source() {
-        return null;
+        return source;
     }
 
     @Override

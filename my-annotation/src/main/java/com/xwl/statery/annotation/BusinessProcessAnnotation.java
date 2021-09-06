@@ -1,7 +1,5 @@
 package com.xwl.statery.annotation;
 
-import org.springframework.stereotype.Service;
-
 import java.lang.annotation.*;
 
 /**
@@ -15,7 +13,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 //程序启动即加载
 @Retention(RetentionPolicy.RUNTIME)
-@Service
+//@Service
 public @interface BusinessProcessAnnotation {
     /**\
      * 类型
