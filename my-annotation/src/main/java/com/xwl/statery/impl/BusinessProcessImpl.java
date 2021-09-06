@@ -34,13 +34,23 @@ public class BusinessProcessImpl implements BusinessProcessAnnotation {
         return BusinessProcessAnnotation.class;
     }
 
+    /**
+     * SynthesizedMergedAnnotationInvocationHandler 里面方法实现computeHashCode
+     * AnnotationInvocationHandler 注解源码实现
+     * @return
+     */
     @Override
     public int hashCode() {
 //        int hashCode = Objects.hash(type, source);
         int hashCode = 0;
-        hashCode += (127 * "type".hashCode()) ^ type.hashCode();
-        hashCode += (127 * "source".hashCode()) ^ source.hashCode();
 
+        //(127 * attribute.getName().hashCode()) ^ getValueHashCode(value);
+        System.out.println(127 * "type".hashCode()+"参数hash"+"值value-hash"+type.hashCode());
+        System.out.println((127 * "type".hashCode())+type.hashCode());
+        hashCode += (127 * "type".hashCode()) ^ type.hashCode();
+        System.out.println("第一次hash"+hashCode);
+        hashCode += (127 * "source".hashCode()) ^ source.hashCode();
+        System.out.println("第二次hash"+hashCode);
         return hashCode;
     }
 
