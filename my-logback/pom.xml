@@ -13,7 +13,7 @@
     <properties>
         <spring.cloud-version>Finchley.SR4</spring.cloud-version>
         <spring.cloud-other-version>2.0.4.RELEASE</spring.cloud-other-version>
-        <boot-version>2.0.4.RELEASE</boot-version>
+        <boot-version>2.5.12</boot-version>
         <mysql-version>5.1.47</mysql-version>
         <mybatis-plus-version>2.2.0</mybatis-plus-version>
     </properties>
